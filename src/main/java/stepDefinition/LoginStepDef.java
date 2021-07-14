@@ -1,13 +1,16 @@
 package stepDefinition;
 
+import java.util.concurrent.TimeUnit;
+
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 
 public class LoginStepDef {
@@ -18,8 +21,10 @@ public class LoginStepDef {
 	
 	public void user_already_on_login_page()
 	{
-		System.setProperty("webdriver.chrome.driver", "./chromedriver.exe");
+		WebDriverManager.chromedriver().setup();
 		driver=new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.get("http://localhost:8888/");
 	}
 	@When("^title of login page is Free CRM$")
@@ -48,7 +53,8 @@ public class LoginStepDef {
 	public void user_is_on_the_Home_Page() 
 	{
 	    String ActualhomeTitle=driver.getTitle();
-	    Assert.assertEquals(" Administrator - Home - vtiger CRM 5 - Commercial Open Source CRM", ActualhomeTitle);
+	    Assert.assertEquals("Administrator - Home - vtiger CRM 5 - Commercial Open Source CRM", ActualhomeTitle);
+	    driver.close();
 	}
 
 }
