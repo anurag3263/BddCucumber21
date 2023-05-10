@@ -14,12 +14,14 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class FaceboolStepDef {
 	WebDriver driver;
+	ChromeOptions chromeOptions = new ChromeOptions();  
+	chromeOptions.addArguments("--headless");
 	
 	@Given("open the facebbok url")
 	public void open_the_facebbok_url() {
 		
 		WebDriverManager.chromedriver().setup();
-		driver=new ChromeDriver();
+		driver=new ChromeDriver(chromeOptions);
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.get("https://www.facebook.com/");
