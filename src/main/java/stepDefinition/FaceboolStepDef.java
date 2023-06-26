@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -15,13 +16,13 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class FaceboolStepDef {
 	WebDriver driver;
 	ChromeOptions chromeOptions = new ChromeOptions();  
-	chromeOptions.addArguments("--headless");
+	//chromeOptions.addArguments("--headless");
 	
 	@Given("open the facebbok url")
 	public void open_the_facebbok_url() {
 		
 		WebDriverManager.chromedriver().setup();
-		driver=new ChromeDriver(chromeOptions);
+		driver=new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.get("https://www.facebook.com/");
