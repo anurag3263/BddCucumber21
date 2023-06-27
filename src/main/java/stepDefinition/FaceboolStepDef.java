@@ -32,7 +32,7 @@ public class FaceboolStepDef {
 		String title = driver.getTitle();
 		System.out.println(title);
 		
-		String expected="Facebook – log in or sign up";
+		String expected="Facebook [-] log in or sign up";
 		Assert.assertEquals(expected, title);
 	}
 	@Then("enter user name {string} and Passcode {string}")
