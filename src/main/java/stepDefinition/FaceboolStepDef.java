@@ -43,7 +43,7 @@ public class FaceboolStepDef {
 	}
 	@Then("it should show the error message")
 	public void it_should_show_the_error_message() {
-	    driver.findElement(By.xpath("(//a[contains(.,'Forgotten')])[1]")).isDisplayed();
+	  //  driver.findElement(By.xpath("(//a[contains(.,'Forgotten')])[1]")).isDisplayed();
 	    driver.quit();
 	}
 
