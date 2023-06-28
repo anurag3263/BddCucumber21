@@ -22,6 +22,16 @@ public class FaceboolStepDef {
 	public void open_the_facebbok_url() {
 		
 		WebDriverManager.chromedriver().setup();
+		
+//		ChromeOptions options = new ChromeOptions();
+//		options.addArguments("start-maximized"); // open Browser in maximized mode
+//		options.addArguments("disable-infobars"); // disabling Infobars
+//		options.addArguments("--disable-extensions"); // disabling extensions
+//		options.addArguments("--disable-gpu"); // applicable to windows os only
+//		options.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
+//		options.addArguments("--no-sandbox"); // Bypass OS security model
+//		WebDriver driver = new ChromeDriver(options);
+		
 		driver=new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -32,7 +42,7 @@ public class FaceboolStepDef {
 		String title = driver.getTitle();
 		System.out.println(title);
 		
-		String expected="Facebook - log in or sign up";
+		String expected="Facebook – log in or sign up";
 		Assert.assertEquals(expected, title);
 	}
 	@Then("enter user name {string} and Passcode {string}")

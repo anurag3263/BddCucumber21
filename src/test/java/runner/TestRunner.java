@@ -1,9 +1,11 @@
 package runner;
 
+import org.junit.AfterClass;
 import org.junit.runner.RunWith;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
+import plugIn.JvmReportingPlugin;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
@@ -14,6 +16,7 @@ import io.cucumber.junit.CucumberOptions;
 		//strict = true, //it will check if any step is not defined in step definition file
 		plugin = {"pretty" , 
 				"html:target/htmlReport.html",
+				"html:target/site/cucumber-pretty" , "json:target/Results/Cucumber.json"
 				//"json:/target/jsonReport.json",
 				//"junit:target/junitReport.junit"
 				},
@@ -25,6 +28,9 @@ import io.cucumber.junit.CucumberOptions;
      
 		
 
-public class TestRunner {
-
+public class TestRunner{
+	@AfterClass         
+	  public static void generateReport() throws Throwable {
+		JvmReportingPlugin.generateJVMReport();
+	}
 }
