@@ -1,7 +1,7 @@
 package runner;
 
-import org.junit.AfterClass;
 import org.junit.runner.RunWith;
+import org.testng.annotations.AfterSuite;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
@@ -29,7 +29,7 @@ import plugIn.JvmReportingPlugin;
 		
 
 public class TestRunner{
-	@AfterClass         
+	@AfterSuite         
 	  public static void generateReport() throws Throwable {
 		JvmReportingPlugin.generateJVMReport();
 	}

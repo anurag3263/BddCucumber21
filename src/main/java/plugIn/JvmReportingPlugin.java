@@ -17,7 +17,7 @@ public class JvmReportingPlugin {
 		File reportOutputDirectory = new File("target");
 		List<String> jsonFiles = new ArrayList<>();
 		jsonFiles.add("target/Results/cucumber.json");
-		//FileInputStream fis=new FileInputStream(properties_File_PathName);
+		// FileInputStream fis=new FileInputStream(properties_File_PathName);
 //		 Properties prop= loadProperties(properties_File_PathName);
 		// prop.load(fis);
 
@@ -32,7 +32,8 @@ public class JvmReportingPlugin {
 		configuration.setBuildNumber(buildNumber);
 		// addidtional metadata presented on main page
 		configuration.addClassifications("Platform", "API");
-		//configuration.addClassifications("Execution_Environment", prop.getProperty("env"));
+		// configuration.addClassifications("Execution_Environment",
+		// prop.getProperty("env"));
 		configuration.addClassifications("Execution_Environment", "Git Action");
 		configuration.addClassifications("Branch", "release/1.0");
 
@@ -45,12 +46,12 @@ public class JvmReportingPlugin {
 		 */
 
 		// optionally specify qualifiers for each of the report json files
-	//	        configuration.addPresentationModes(PresentationMode.PARALLEL_TESTING);
-	//	        configuration.setQualifier("cucumber-report-1","First report");
-	//	        configuration.setQualifier("cucumber-report-2","Second report");
+		// configuration.addPresentationModes(PresentationMode.PARALLEL_TESTING);
+		// configuration.setQualifier("cucumber-report-1","First report");
+		// configuration.setQualifier("cucumber-report-2","Second report");
 
-		        ReportBuilder reportBuilder=new ReportBuilder(jsonFiles,configuration);
-		        Reportable result=reportBuilder.generateReports();
+		ReportBuilder reportBuilder = new ReportBuilder(jsonFiles, configuration);
+		Reportable result = reportBuilder.generateReports();
 		// and here validate 'result' to decide what to do if report has failed
 	}
 
