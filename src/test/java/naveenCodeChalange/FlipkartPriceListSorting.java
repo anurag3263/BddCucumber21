@@ -46,6 +46,9 @@ public class FlipkartPriceListSorting {
 		System.out.println(priceList);
 		Collections.sort(priceList);
 		System.out.println("After Sorting the Priice : " + priceList);
+		Collections.reverse(priceList);
+		System.out.println("After Sorting In Descending Order : " + priceList);
+		driver.close();
 	}
 
 }
