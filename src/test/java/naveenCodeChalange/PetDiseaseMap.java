@@ -14,6 +14,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class PetDiseaseMap {
 	static WebDriver driver;
 
+	@SuppressWarnings("deprecation")
 	public static void main(String[] args) throws InterruptedException {
 		WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();

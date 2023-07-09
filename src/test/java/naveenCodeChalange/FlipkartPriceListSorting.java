@@ -18,6 +18,7 @@ public class FlipkartPriceListSorting {
 
 	static WebDriver driver;
 
+	@SuppressWarnings("deprecation")
 	public static void main(String[] args) throws InterruptedException {
 
 		WebDriverManager.chromedriver().setup();
@@ -28,7 +29,12 @@ public class FlipkartPriceListSorting {
 		System.out.println(driver.getTitle());
 		Thread.sleep(5000);
 
+//      Before Selenium 4 this was the Syntax
 //		WebDriverWait wait = new WebDriverWait(driver,30);
+		
+//      After Selenium 4 Syntax
+//      WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));	
+		
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@class='_2KpZ6l _2doB4z']")));
 //		driver.findElement(By.xpath("//button[@class='_2KpZ6l _2doB4z']")).click();
 		Thread.sleep(3000);

@@ -16,6 +16,7 @@ public class DragAndDrop {
 
 	static WebDriver driver;
 
+	@SuppressWarnings("deprecation")
 	public static void main(String[] args) throws InterruptedException {
 
 		WebDriverManager.chromedriver().setup();

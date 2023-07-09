@@ -28,7 +28,7 @@
 					</includes>
 				</configuration>
 			</plugin>
-       <plugin>
+			<plugin>
 				<groupId>net.masterthought</groupId>
 				<artifactId>maven-cucumber-reporting</artifactId>
 				<version>5.6.1</version>
@@ -69,7 +69,13 @@
 			<artifactId>cucumber-core</artifactId>
 			<version>6.9.1</version>
 		</dependency>
-		
+
+		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>4.10.0</version>
+		</dependency>
 
 
 		<dependency>
@@ -96,16 +102,20 @@
 			<artifactId>junit</artifactId>
 			<version>4.13.1</version>
 		</dependency>
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-java</artifactId>
-			<version>3.141.59</version>
-		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
 		<dependency>
 			<groupId>io.github.bonigarcia</groupId>
 			<artifactId>webdrivermanager</artifactId>
-			<version>4.3.1</version>
+			<version>5.3.2</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>31.0.1-jre</version>
+		</dependency>
+
 		<dependency>
 			<groupId>com.aventstack</groupId>
 			<artifactId>extentreports-cucumber4-adapter</artifactId>
