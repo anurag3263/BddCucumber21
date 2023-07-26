@@ -1,3 +1,4 @@
+@login
 Feature: Free CRM login Feature
 
   Scenario: Free CRM Login Test Scenario

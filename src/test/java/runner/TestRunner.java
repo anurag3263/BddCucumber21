@@ -1,7 +1,7 @@
 package runner;
 
 import org.junit.runner.RunWith;
-import org.testng.annotations.AfterSuite;
+import org.junit.*;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
@@ -14,22 +14,26 @@ import plugIn.JvmReportingPlugin;
 		//format= {"pretty","html:test-outout", "json:json_output/cucumber.json", "junit:junit_xml/cucumber.xml"},//to generate different types of reporting
     	monochrome = true, //display the console output in a proper readable format
 		//strict = true, //it will check if any step is not defined in step definition file
-		plugin = {"pretty" , 
+    	publish = true,
+		dryRun = true ,
+		tags = "@facebook or ~@login",
+    	plugin = {"pretty" , 
 				"html:target/htmlReport.html",
 				"html:target/site/cucumber-pretty" , "json:target/Results/Cucumber.json"
 				//"json:/target/jsonReport.json",
 				//"junit:target/junitReport.junit"
-				},
-				publish = true,
-				dryRun = false ,
-				tags = "@facebook"
+				}
+				
 		)//to check the mapping is proper between feature file and step def file
+         // new way to run multiple tags at once and simultaneously ignore scenario based on tags
+         // tags = "~@facebook or @login",
+         // when you use ~ before any tags it will ignore that scenario
 		//tags //= {"~@SmokeTest" , "~@RegressionTest", "~@End2End"}
      
 		
 
 public class TestRunner{
-	@AfterSuite         
+	@AfterClass         
 	  public static void generateReport() throws Throwable {
 		JvmReportingPlugin.generateJVMReport();
 	}

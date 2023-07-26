@@ -14,7 +14,7 @@ public class DynamicTableCheckBox {
 	
 	static WebDriver driver;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Throwable {
 		WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
@@ -22,9 +22,9 @@ public class DynamicTableCheckBox {
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
 		System.out.println("Title Of page : " + driver.getTitle());
 		
-		String name= "Will";
+		String name= "Jessica";
 		
-		WebElement checkbox= driver.findElement(By.xpath("//table//td[text()='"+name+"']/..//input[@type='checkbox']"));
+//		WebElement checkbox= driver.findElement(By.xpath("//table//td[text()='"+name+"']/..//input[@type='checkbox']"));
 		
 		List<WebElement> rows= driver.findElements(By.xpath("//table//tr"));
 		
@@ -52,6 +52,8 @@ public class DynamicTableCheckBox {
 				
 			}
 		}
+		Thread.sleep(3000);
+		driver.quit();
 
 	}
 
