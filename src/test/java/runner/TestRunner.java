@@ -15,11 +15,12 @@ import plugIn.JvmReportingPlugin;
     	monochrome = true, //display the console output in a proper readable format
 		//strict = true, //it will check if any step is not defined in step definition file
     	publish = true,
-		dryRun = true ,
+		dryRun = false ,
 		tags = "@facebook or ~@login",
     	plugin = {"pretty" , 
 				"html:target/htmlReport.html",
-				"html:target/site/cucumber-pretty" , "json:target/Results/Cucumber.json"
+				"html:target/site/cucumber-pretty" , "json:target/Results/Cucumber.json",
+				"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
 				//"json:/target/jsonReport.json",
 				//"junit:target/junitReport.junit"
 				}
