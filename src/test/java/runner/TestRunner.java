@@ -1,13 +1,14 @@
 package runner;
 
+import org.junit.AfterClass;
 import org.junit.runner.RunWith;
-import org.junit.*;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import plugIn.JvmReportingPlugin;
 
-@RunWith(Cucumber.class)
+@RunWith(Cucumber.class) //required if you are using JUnit
+
 @CucumberOptions(
 		features="src/main/java/Features", //the path of the feature files
 		glue={"stepDefinition"}, //the path of the step definition files
