@@ -8,13 +8,23 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import com.basePackage.BaseClass;
+import com.util.Utils;
+
+import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class FaceboolStepDef {
-	WebDriver driver;
+public class FaceboolStepDef extends BaseClass{
+	private Scenario scenario;
+	@Before
+    public void before(Scenario scenario) {
+        this.scenario = scenario;
+    }
+//	WebDriver driver;
 	ChromeOptions chromeOptions = new ChromeOptions();
 	// chromeOptions.addArguments("--headless");
 
@@ -45,18 +55,21 @@ public class FaceboolStepDef {
 
 		String expected = "Facebook – log in or sign up";
 		Assert.assertEquals(expected, title);
+		Utils.attach(scenario);
 	}
 
 	@Then("enter user name {string} and Passcode {string}")
 	public void enter_user_name_and_passcode(String string, String string2) {
 		driver.findElement(By.name("email")).sendKeys(string);
 		driver.findElement(By.name("pass")).sendKeys(string2);
+		Utils.attach(scenario);
 		driver.findElement(By.name("login")).click();
 	}
 
 	@Then("it should show the error message")
 	public void it_should_show_the_error_message() {
-		// driver.findElement(By.xpath("(//a[contains(.,'Forgotten')])[1]")).isDisplayed();
+		 driver.findElement(By.xpath("(//a[contains(.,'Forgotten')])[1]")).isDisplayed();
+		Utils.attach(scenario);
 		driver.quit();
 	}
 
