@@ -30,7 +30,7 @@ import plugIn.JvmReportingPlugin;
          // new way to run multiple tags at once and simultaneously ignore scenario based on tags
          // tags = "~@facebook or @login",
          // when you use ~ before any tags it will ignore that scenario
-		//tags //= {"~@SmokeTest" , "~@RegressionTest", "~@End2End"}
+		//tags = {"~@SmokeTest" , "~@RegressionTest", "~@End2End"}
      
 		
 
