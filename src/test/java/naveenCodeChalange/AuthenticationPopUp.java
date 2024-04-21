@@ -8,8 +8,8 @@ import org.apache.commons.codec.binary.Base64;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
-import org.openqa.selenium.devtools.v113.network.Network;
-import org.openqa.selenium.devtools.v113.network.model.Headers;
+//import org.openqa.selenium.devtools.v113.network.Network;
+//import org.openqa.selenium.devtools.v113.network.model.Headers;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -29,7 +29,7 @@ public class AuthenticationPopUp {
 
 		DevTools devTools = ((ChromeDriver) driver).getDevTools();
 		devTools.createSession();
-		devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
+//		devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
 
 		// send authentication header
 
@@ -38,7 +38,7 @@ public class AuthenticationPopUp {
 				+ new String(new Base64().encode(String.format("%s:%s", username, password).getBytes()));
 		header.put("Authorization", basicAuth);
 
-		devTools.send(org.openqa.selenium.devtools.v113.network.Network.setExtraHTTPHeaders(new Headers(header)));
+	//	devTools.send(org.openqa.selenium.devtools.v113.network.Network.setExtraHTTPHeaders(new Headers(header)));
 		
 		driver.get("http://the-internet.herokuapp.com/basic_auth");
 
