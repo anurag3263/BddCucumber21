@@ -52,17 +52,17 @@ public class Utils extends BaseClass {
 	public void validate(Scenario scenario) {
 		if (scenario.isFailed()) {
 			// Take a screenshot...
-			final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+			final byte[] screenshot = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.BYTES);
 			// embed it in the report.
 			scenario.attach(screenshot, "image/png", scenario.getName() + "_" + GetCurrentDate());
-			driver.quit();
+			getDriver().quit();
 		}
 		if (scenario.getStatus() == Status.PASSED) {
 			// Take a screenshot...
-			final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+			final byte[] screenshot = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.BYTES);
 			// embed it in the report.
 			scenario.attach(screenshot, "image/png", scenario.getName());
-			driver.quit();
+			getDriver().quit();
 		}
 		
 
@@ -73,7 +73,7 @@ public class Utils extends BaseClass {
 		String pathString=null;
 		pathString="target/extentReports/screenshot/"+scenario.getName()+GetCurrentDate()+".png";
 		if(pathString!=null) {
-		takeScreenshot(pathString, driver);
+		takeScreenshot(pathString, getDriver());
 		try {
 			MediaEntityBuilder.createScreenCaptureFromPath(pathString).build();
 			
