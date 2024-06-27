@@ -17,7 +17,7 @@ import plugIn.JvmReportingPlugin;
 		//strict = true, //it will check if any step is not defined in step definition file
     	publish = true,
 		dryRun = false ,
-		tags = "@facebook or ~@login",
+		tags = "@facebook",
     	plugin = {"pretty" , 
 				"html:target/htmlReport.html",
 				"html:target/site/cucumber-pretty" , "json:target/Results/Cucumber.json",

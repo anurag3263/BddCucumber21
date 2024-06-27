@@ -72,7 +72,7 @@ public class FaceboolStepDef extends BaseClass {
 	public void it_should_show_the_error_message() {
 		getDriver().findElement(By.xpath("(//a[contains(.,'Forgotten')])[1]")).isDisplayed();
 		Utils.attach(scenario);
-		getDriver().quit();
+		tearDown();
 	}
 
 }
