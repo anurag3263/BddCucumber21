@@ -1,7 +1,8 @@
-package naveenCodeChalange;
+package streamsApiFunction;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.function.Consumer;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -23,8 +24,17 @@ public class JavaStreams {
 		System.out.println("Title Of page : " + driver.getTitle());
 		List<WebElement> list = driver.findElements(By.tagName("a"));
 
-		list.stream().map(e -> e.getText()).filter(s -> !s.isBlank()).distinct().sorted()
-				.filter(s -> s.startsWith("C") || s.endsWith("s")).forEach(System.out::println);
+	//	list.stream().map(e -> e.getText()).filter(s -> !s.isBlank()).distinct().sorted()
+	//			.filter(s -> s.startsWith("C") || s.endsWith("s")).forEach(System.out::println);
+		
+		//or use consumer interface like below
+		
+		Consumer<WebElement> consumer = (e) -> {
+			if (!e.getText().isBlank()) {
+				System.out.println(e.getText());
+			}
+		};
+		list.forEach(consumer);
 
 		driver.quit();
 	}
