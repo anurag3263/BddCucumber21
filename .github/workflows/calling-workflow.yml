@@ -8,13 +8,17 @@ jobs:
   call_target_workflow:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout source repository
-      uses: actions/checkout@v3 # Checks out the source repository
-
-    - name: Call target workflow from another repository
-      uses: anurag3263/REST_ASSUERED_2024/.github/workflows/Allure-maven.yml@main # Calls the target workflow
-      # with:
-        # Optionally pass inputs if the target workflow accepts them
-        # input_name: input_value
-      env: # Use env to set environment variables for the step
-        TOKEN: ${{ secrets.TARGET_REPO_ACCESS_TOKEN }} # Set secret as an environment variable
+      - name: Trigger target repository workflow
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.TARGET_REPO_ACCESS_TOKEN }} # Token with access to the target repo
+          script: |
+            const response = await github.rest.repos.createDispatchEvent({
+              owner: 'anurag3263  // Replace with target repo owner
+              repo: 'REST_ASSUERED_2024',    // Replace with target repo name
+              event_type: 'trigger-workflow', // Must match the type in target repo workflow
+              client_payload: {
+                // Add any additional data you want to pass
+              }
+            });
+            console.log('Dispatch event response:', response);
