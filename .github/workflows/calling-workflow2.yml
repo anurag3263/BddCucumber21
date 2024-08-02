@@ -12,7 +12,7 @@ jobs:
       - name: Trigger target repository workflow
         uses: actions/github-script@v6
         with:
-          github-token: ${{ secrets.SOURCE_REPO_ACCESS_TOKEN }} # Token with access to trigger workflows in the target repo
+          github-token: ${{ secrets.TARGET_REPO_ACCESS_TOKEN }} # Token with access to trigger workflows in the target repo
           script: |
             await github.rest.repos.createDispatchEvent({
               owner: 'anurag3263',  // Replace with the target repo owner
