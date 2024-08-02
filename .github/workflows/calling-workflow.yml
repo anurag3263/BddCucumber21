@@ -8,17 +8,9 @@ jobs:
   call_target_workflow:
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger target repository workflow
-        uses: actions/github-script@v6
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v3
         with:
-          github-token: ${{ secrets.TARGET_REPO_ACCESS_TOKEN }} # Token with access to the target repo
-          script: |
-            const response = await github.rest.repos.createDispatchEvent({
-              owner: 'anurag3263  // Replace with target repo owner
-              repo: 'REST_ASSUERED_2024',    // Replace with target repo name
-              event_type: 'trigger-workflow', // Must match the type in target repo workflow
-              client_payload: {
-                // Add any additional data you want to pass
-              }
-            });
-            console.log('Dispatch event response:', response);
+          token: ${{ secrets.TARGET_REPO_ACCESS_TOKEN }}
+          repository: anurag3263/REST_ASSUERED_2024
+          event-type: trigger-workflow
