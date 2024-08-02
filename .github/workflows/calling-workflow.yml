@@ -9,10 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout source repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v3 # Checks out the source repository
 
     - name: Call target workflow from another repository
-      uses: anurag3263/REST_ASSUERED_2024/.github/workflows/Allure-maven.yml@main # Use the appropriate branch or tag
+      uses: anurag3263/REST_ASSUERED_2024/.github/workflows/Allure-maven.yml@main # Calls the target workflow
       # with:
         # Optionally pass inputs if the target workflow accepts them
         # input_name: input_value
+      env: # Use env to set environment variables for the step
+        TOKEN: ${{ secrets.TARGET_REPO_ACCESS_TOKEN }} # Set secret as an environment variable
