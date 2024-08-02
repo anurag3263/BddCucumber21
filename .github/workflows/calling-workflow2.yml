@@ -1,0 +1,22 @@
+# .github/workflows/calling-workflow.yml
+name: Calling Workflow 2
+
+on:
+  workflow_dispatch: # Allows this workflow to be manually triggered from the GitHub UI
+
+jobs:
+  call_target_workflow:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger target repository workflow
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.SOURCE_REPO_ACCESS_TOKEN }} # Token with access to trigger workflows in the target repo
+          script: |
+            await github.rest.repos.createDispatchEvent({
+              owner: 'anurag3263',  // Replace with the target repo owner
+              repo: 'REST_ASSUERED_2024',    // Replace with the target repo name
+              event_type: 'trigger-workflow', // Must match the type in the target repo workflow
+            });
+            console.log('Dispatch event triggered successfully');
