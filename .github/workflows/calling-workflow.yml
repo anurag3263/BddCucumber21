@@ -1,0 +1,18 @@
+# .github/workflows/calling-workflow.yml
+name: Calling Workflow
+
+on:
+  workflow_dispatch: # Allows this workflow to be manually triggered from the GitHub UI
+
+jobs:
+  call_target_workflow:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout source repository
+      uses: actions/checkout@v3
+
+    - name: Call target workflow from another repository
+      uses: anurag3263/REST_ASSUERED_2024/.github/workflows/Allure-maven.yml@main # Use the appropriate branch or tag
+      # with:
+        # Optionally pass inputs if the target workflow accepts them
+        # input_name: input_value
