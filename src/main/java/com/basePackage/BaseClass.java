@@ -28,9 +28,10 @@ public class BaseClass {
 	public static WebDriver getDriver() {
 		return webDriverThreadLocal.get();
 	}
+
 	public static long getCurrentThreadId() {
-        return threadIdThreadLocal.get();
-    }
+		return threadIdThreadLocal.get();
+	}
 
 	public static void setDriver(String browser) {
 		WebDriver driver = null;
@@ -54,7 +55,7 @@ public class BaseClass {
 		}
 		// Set the WebDriver instance to the ThreadLocal
 		webDriverThreadLocal.set(driver);
-		System.out.println("Current driver thread id --> "+Thread.currentThread().getId());
+		System.out.println("Current driver thread id --> " + Thread.currentThread().getId());
 		threadIdThreadLocal.set(Thread.currentThread().getId());
 	}
 
@@ -64,10 +65,11 @@ public class BaseClass {
 			driver.quit();
 			webDriverThreadLocal.remove();
 			// Remove thread ID from ThreadLocal
-            threadIdThreadLocal.remove();
+			threadIdThreadLocal.remove();
 		}
 
 	}
+
 	public void tearDown() {
 		getDriver().quit();
 	}
