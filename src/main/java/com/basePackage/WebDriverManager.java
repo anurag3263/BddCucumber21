@@ -8,57 +8,60 @@ import org.openqa.selenium.safari.SafariDriver;
 
 public class WebDriverManager {
 
-	private static volatile WebDriverManager instance;
-	private static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<>();
+    private static final WebDriverManager instance = new WebDriverManager();
 
-	private WebDriverManager() {
-		// constructor of singleton class pattern
-	}
+    // Thread-safe WebDriver storage
+    private static final ThreadLocal<WebDriver> tlDriver = new ThreadLocal<>();
+    private static final ThreadLocal<String> tlBrowser = new ThreadLocal<>();
 
-	private void initDriver(String browser) {
-		switch (browser) {
-		case "chrome":
-			tlDriver.set(new ChromeDriver());
-			break;
+    private WebDriverManager() {
+        // private constructor for Singleton pattern
+    }
 
-		case "firefox":
-			tlDriver.set(new FirefoxDriver());
-			break;
-		case "edge":
-			tlDriver.set(new EdgeDriver());
-			break;
-		case "safari":
-			tlDriver.set(new SafariDriver());
-			break;
+    public static WebDriverManager getInstance() {
+        return instance;
+    }
 
-		default:
-			throw new IllegalArgumentException("Unsupported browser type : " + browser);
-		}
-	}
+    public void setBrowser(String browser) {
+        tlBrowser.set(browser.toLowerCase());
+    }
 
-	public static WebDriverManager getInstance(String browser) {
-		if (instance == null) {
-			synchronized (WebDriverManager.class) {
-				if (instance == null) {
-					instance = new WebDriverManager();
-				}
-			}
-		}
-		if (tlDriver.get() == null) {
-			instance.initDriver(browser);
-		}
-		return instance;
-	}
+    public WebDriver getDriver() {
+        if (tlDriver.get() == null) {
+            initDriver(tlBrowser.get());
+        }
+        return tlDriver.get();
+    }
 
-	public WebDriver getDriver() {
-		return tlDriver.get();
-	}
+    private void initDriver(String browser) {
+        if (browser == null) {
+            throw new IllegalStateException("Browser type is not set for the current thread.");
+        }
 
-	public static void quiteBrowser() {
-		if (tlDriver.get() != null) {
-			tlDriver.get().close();;
-			tlDriver.remove();
-		}
-	}
+        switch (browser) {
+            case "chrome":
+                tlDriver.set(new ChromeDriver());
+                break;
+            case "firefox":
+                tlDriver.set(new FirefoxDriver());
+                break;
+            case "edge":
+                tlDriver.set(new EdgeDriver());
+                break;
+            case "safari":
+                tlDriver.set(new SafariDriver());
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported browser type: " + browser);
+        }
+    }
 
+    public void quitDriver() {
+        WebDriver driver = tlDriver.get();
+        if (driver != null) {
+            driver.quit();
+            tlDriver.remove();
+            tlBrowser.remove();
+        }
+    }
 }
