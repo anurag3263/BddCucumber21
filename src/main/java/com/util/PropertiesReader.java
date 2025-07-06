@@ -33,7 +33,7 @@ public class PropertiesReader {
 		 */
 
 		for (Entry<Object, Object> entry : prop.entrySet()) {
-		//	System.out.println(entry.getKey() + "-->" + entry.getValue());
+			System.out.println(entry.getKey() + "-->" + entry.getValue());
 		}
 
 		/**

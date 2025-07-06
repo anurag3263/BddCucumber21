@@ -2,7 +2,6 @@ package naveenCodeChalange;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 import org.apache.commons.codec.binary.Base64;
 import org.openqa.selenium.WebDriver;

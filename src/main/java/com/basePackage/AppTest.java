@@ -12,22 +12,23 @@ public class AppTest {
 
 	private WebDriver driver;
 
-	@BeforeClass
-	@Parameters("browser")
-	public void setup(String browser) {
-		driver = WebDriverManager.getInstance(browser).getDriver();
-	}
+    @BeforeClass
+    @Parameters("browser")
+    public void setup(String browser) {
+    	WebDriverManager.getInstance().setBrowser(browser);
+        driver = WebDriverManager.getInstance().getDriver();
+    }
 
-	@Test
-	public void testGoogle() {
-		driver.get("https://www.google.com/");
-		System.out.println(Thread.currentThread().getName() + "; " + driver.getTitle());
-		assertTrue(driver.getTitle().contains("Google"));
-	}
+    @Test
+    public void testGoogle() {
+        driver.get("https://www.google.com/");
+        System.out.println(Thread.currentThread().getName() + "; " + driver.getTitle());
+        assertTrue(driver.getTitle().contains("Google"));
+    }
 
-	@AfterClass
-	public void tearDown() {
-		WebDriverManager.quiteBrowser();
-	}
+    @AfterClass
+    public void tearDown() {
+        WebDriverManager.getInstance().quitDriver();
+    }
 
 }
